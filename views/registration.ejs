@@ -1,16 +1,33 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Aram_Registration</title>
-    <script type="text/javascript" src="/javascripts/jquery.js"></script>
-    <script type="text/javascript" src="/javascripts/ajax.js"></script>    
+    <title>Aram_Registration</title> 
     <link rel='stylesheet' href='/stylesheets/bootstrap.css'/>
+    <style>
+      .registration{
+        color: #555555;
+        text-decoration: none;
+        background-color: #e5e5e5;
+        -webkit-box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.125);
+        -moz-box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.125);
+        box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.125);
+      }
+    </style>
   </head>
   <body>
   	<article class="container">
-  		<div class="hero-unit">
-  			<h1>ARAM</h1>
-	  	</div>   
+      <% include header %>   
     </article>
   </body>
+
+  <script type="text/javascript" src="/javascripts/jquery.js"></script>
+  <script type="text/javascript" src="/javascripts/ajax.js"></script>    
+  <script type="text/javascript" src="/javascripts/helper.js"></script> 
+  <script src="/javascripts/bootstrap.min.js"></script>
+  <script language="javascript">
+    $('.dropdown-toggle').dropdown();
+    $('.dropdown-menu').find('form').click(function (e) {
+        e.stopPropagation();
+      });
+  </script>
 </html>
