@@ -2,17 +2,17 @@
 <html>
   <head>
     <title><%= title %></title>
-    <sript type="text/javascript" src="./javascripts/bootstap.js"/>
-    <link rel='stylesheet' href='/stylesheets/bootstrap.css' />
+    <script type="text/javascript" src="/javascripts/jquery.js"></script>
+    <script type="text/javascript" src="/javascripts/ajax.js"></script>    
   </head>
   <body>
-  	<div class='container'>
-  		<div class="hero-unit">
+  	<div>
+  		<div>
   			<h1>ARAM</h1>
-  			<form class="form-inline">
-		    <input type="text" class="input-small" placeholder="Email" id="email">
-		    <input type="password" class="input-small" placeholder="Password" id="password">
-		    <button type="submit" class="btn">Sign in</button>
+  			<form  id="login_form">
+			    <input type="text" placeholder="Email" id="email">
+			    <input type="password" placeholder="Password" id="password">
+		    	<button type="button" onClick="login()">Sign in</button>
 		    </form>
 	  	</div>
     </div>
