@@ -2,18 +2,48 @@
 <html>
   <head>
     <title><%= title %></title>
-    <script type="text/javascript" src="/javascripts/jquery.js"></script>
-    <script type="text/javascript" src="/javascripts/ajax.js"></script>    
     <link rel='stylesheet' href='/stylesheets/bootstrap.css'/>
   </head>
   <body>
-  	<div class="container">
-  		<div class="hero-unit">
-        <ul class="nav nav-tabs">
-          <li class="active"><a href="#">Home</a></li>
-        </ul>
-  			<h1>ARAM</h1>
-	  	</div>
-    </div>
+<div class="container">
+  <div class="hero-unit">
+    <div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container-fluid">     
+        <div class="nav-collapse">
+          <ul class="nav">
+           <li class="active"><a href="#">Home</a></li> 
+           <li class="dropdown" id="menu1">
+             <a class="dropdown-toggle" data-toggle="dropdown" href="#menu1">
+               Login
+                <b class="caret"></b>
+             </a>
+             <div class="dropdown-menu">
+              <form style="margin: 0px" accept-charset="UTF-8" action="/sessions" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /></div>
+                 <fieldset class='textbox' style="padding:10px">
+                   <input style="margin-top: 8px" type="text" placeholder="Username" />
+                   <input style="margin-top: 8px" type="password" placeholder="Passsword" />
+                   <input class="btn-primary" name="commit" type="submit" value="Log In" />
+                 </fieldset>
+               </form>
+             </div>
+           </li> 
+          </ul>
+        </div>
+      </div>
+        </div>
+        </div>  
+        <h1>ARAM</h1>
+      </div>
+    </div> 
   </body>
+  <script type="text/javascript" src="/javascripts/jquery.js"></script>
+  <script type="text/javascript" src="/javascripts/ajax.js"></script>    
+  <script src="/javascripts/bootstrap.min.js"></script>
+  <script language="javascript">
+    $('.dropdown-toggle').dropdown();
+    $('.dropdown-menu').find('form').click(function (e) {
+        e.stopPropagation();
+      });
+  </script>
 </html>
