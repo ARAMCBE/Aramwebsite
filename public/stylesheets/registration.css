@@ -1,0 +1,19 @@
+.cls_aramRegFormCnt {
+	width: 362px;
+  	float: left;
+	margin: 0;
+	padding: 25px;
+	background: #f1f1f1;
+}
+.cls_aramRegFormCnt strong {
+	margin: 0 0 .5em;
+	display: inline-block;
+	width: 100%;
+}
+.cls_aramRegFormCnt input, .cls_aramRegFormCnt select {
+	width: 100%;
+}
+input.cls_aramRegFirstName, input.cls_aramRegLastName {
+	width: 150px;
+	margin-right: 5px;
+}
