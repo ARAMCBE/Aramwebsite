@@ -1,7 +1,6 @@
 
 var md5 = require('MD5');
 var db = require('../db.js');
-var dateFormat = require('dateformat');	
 
 exports.createUser = function (user) {
 	var that = {};
