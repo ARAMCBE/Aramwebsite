@@ -8,25 +8,34 @@ exports.list = function(req, res){
 };
 
 exports.login = function(req, res) {
-	var query = "SELECT password, email from user_details where email like '" + req.body.email +"'";
+	if(req.session.hash){
+		res.send(JSON.stringify({code:3}));
+	}else {
+		var query = "SELECT password, firstname, lastname from user_details where email like '" + req.body.email 
+		+"' and password='" +  md5(req.body.password) + "'";
 
-	db.query(query, [], function(err, response) {
-		if(err){
-			console.log("Error in password Retrival", err);
-			res.status(401);
-			res.send({error:{arlogin:1}}); //Invalid login
-		}
-		if(response.rows[0].password !== undefined) {
-			var passhash = md5(response.rows[0].password);
-			req.session.hash = response.rows[0].email;
-			res.send({username:req.body.email, passhash: passhash});
-		}
-	});
+		db.query(query, [], function(err, response) {
+			console.log(response);
+			var dbRes = response.rows;
+			if(err){
+				console.log("Error in password Retrival", err);
+				res.send(JSON.stringify({code:4})); //Invalid login
+			}
+			if(dbRes.length == 0 || Object.keys(dbRes[0]).length == 0) {
+				res.send(JSON.stringify({code:4}));
+			}
+			if(dbRes.length > 0 && Object.keys(dbRes[0]).length > 0) {
+				var passhash = dbRes[0].password;
+				req.session.hash = dbRes[0].firstname + " " + dbRes[0].lastname;
+				res.send(JSON.stringify({username:req.session.hash, passhash: passhash, success:true}));
+			}
+		});
+	}
 };
 
 exports.registration = function(req, res) {
 	if(req.session.hash){ //If already logged in
-		res.send({error: {code :1, message: "Already logged In"}, success: false});
+		res.send(JSON.stringify({code :3, message: "Already logged In"}));
 	}else {
 		var requestBody = req.body;
 		var userDetail = createUser(requestBody);
@@ -34,17 +43,16 @@ exports.registration = function(req, res) {
 			if(error === undefined || Object.keys(error).length == 0 ){
 				persistUser(userDetail, function(error, data) {
 					if(error){ // If error in store in db
-						res.status(400);
-						res.send({error:{code: 2, message:"Error in registration"}, success: false});
+						res.send(JSON.stringify({code: 2, message:"Error in registration"}));
 					}else{
-						res.send({success: true});
+						res.status(201);
+						res.send({code:5, success: true});
 					}
 				});
 			}else{//If any error in user details
+
 				console.log("Error in user details", error);
-				res.status(400);
-				console.log("------>", error);
-				res.send(error);
+				res.send(JSON.stringify(error));
 			}
 		});
 	}
@@ -64,8 +72,6 @@ var persistUser = function(user, callback) {
 		+ user.address + "',"
 		+ user.pincode + ",'"
 		+ user.gender + "')";
-
-console.log(query);
 
 		db.query(query, [], function(err, data) {
 			if(err){

@@ -21,7 +21,7 @@ exports.createUser = function (user) {
 		db.query("select count(1) as exists from user_details where email like '" + that.emailId + "'", [], function(err, response) {
 			console.log(response);
 			if(response.rows[0].exists > 0) {
-				error.armail = {code:"mailId", message:"MaildId already exists" };
+				error = {code:1, id :"mailId", message:"MaildId already exists" };
 			}
 			cb(error);
 		});
