@@ -13,37 +13,27 @@ var registrationPost = function(){
     jsonObj.repassword = $('#id_aramRegRePass').val();
     jsonObj.mobile = $('#id_aramRegPhone').val();
     jsonObj.dob = $('#id_aramRegDate').val();
-	jsonObj.country = "India";
-	jsonObj.state = "Tamil nadu";
-	jsonObj.city = "Cooimbatore";
-	jsonObj.address = "11/45, Peelamedu";
+	jsonObj.country = $('#id_aramRegCountry').val();
+	jsonObj.state = $('#id_aramRegState').val();
+	jsonObj.city = $('#id_aramRegCity').val();
+	jsonObj.address = $('#id_aramRegAddrs').val();
 	jsonObj.firstname = $('#id_aramRegFirstName').val();
 	jsonObj.lastname = $('#id_aramRegLastName').val();
 	jsonObj.gender = $('#id_aramRegGender').val();
 	jsonObj.pincode = $('#id_aramRegPin').val();
-	$.post('/registration', jsonObj, function (data){
-		console.log(data);
-	});
+	if(jsonObj.repassword == jsonObj.password)
+	{
+			console.log(jsonObj);
+		//$.post('/registration', jsonObj, afterRegistrationPost(data));
+	}
+	else
+	{
+		alert('TODO : password dint match');
+	}
 };
 
-var registrationPost = function(){
-	var jsonObj = {};
-	jsonObj.mailId = "testMail@test.com";
-    jsonObj.password = "password";
-    jsonObj.repassword = "password";
-    jsonObj.mobile = "3254658585";
-    jsonObj.dob = "17/11/2013";
-	jsonObj.country = "India";
-	jsonObj.state = "Tamil nadu";
-	jsonObj.city = "Coimbatore";
-	jsonObj.address = "45/11";
-	jsonObj.firstname = "Anbu";
-	jsonObj.lastname = "S";
-	jsonObj.gender = "Male";
-	jsonObj.pincode = "641004";
-	$.post('/registration', jsonObj, function (data){
-		console.log(data);
-	});
+var afterRegistrationPost = function(data){
+	console.log(data);
 };
 
 

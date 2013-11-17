@@ -24,7 +24,7 @@
         </div>
 
         <div class="cls_aramRegFormCnt">
-          <form class="cls_aramRegForm" id="id_aramRegForm" action="">
+          <form class="cls_aramRegForm" id="id_aramRegForm">
             <div class="cls_aramRegWrapName cls_aramRegWrap">
               <fieldset>
                 <strong>Name</strong>
@@ -44,7 +44,7 @@
               </label>
             </div>
 
-            <div class="control-group">
+            <!--div class="control-group">
               <label class="control-label" for="inputIcon">Email address</label>
               <div class="controls">
                 <div class="input-prepend">
@@ -52,7 +52,7 @@
                   <input class="span2" id="inputIcon" type="text">
                 </div>
               </div>
-            </div>
+            </div-->
 
             <div class="cls_aramRegWrap cls_aramRegWrapPass">
               <label class="cls_aramRegLab">
@@ -100,17 +100,44 @@
               <label class="cls_aramRegLab">
                 <strong>Mobile phone</strong>
               </label>
-              <input type="number" placeholder="Mobile Phone" class="cls_aramRegPhone cls_aramRegInp" id="id_aramRegPhone" required max-length=11>
+              <input type="number" pattern=".{10, 11}" placeholder="Mobile Phone" class="cls_aramRegPhone cls_aramRegInp" id="id_aramRegPhone" required maxlength=11>
               <span class="cls_aramRegErrormsg" id="id_aramReg_arphonenumber">
               </span>
             </div>
 
-            <div class="cls_aramRegWrap cls_aramRegWrappin">
+            <div class="cls_aramRegWrap cls_aramRegWrapAddrs">
+              <label class="cls_aramRegLab">
+                <strong>Address</strong>
+              </label>
+              <textarea class="cls_aramRegAddrs cls_aramRegInp" id="id_aramRegAddrs" cols="40" rows="5"></textarea>
+              <span class="cls_aramRegErrormsg" id="id_aramReg_araddrs">
+              </span>
+            </div>
+
+            <div class="cls_aramRegWrap cls_aramRegWrapPin">
               <label class="cls_aramRegLab">
                 <strong>Pin</strong>
               </label>
-              <input type="number" placeholder="Pin" class="cls_aramRegPin cls_aramRegInp" id="id_aramRegPin" required max-length=6>
+              <input type="number" placeholder="Pin" class="cls_aramRegPin cls_aramRegInp" id="id_aramRegPin" required maxlength=6>
               <span class="cls_aramRegErrormsg" id="id_aramReg_arpin">
+              </span>
+            </div>
+
+            <div class="cls_aramRegWrap cls_aramRegWrapCity">
+              <label class="cls_aramRegLab">
+                <strong>City</strong>
+              </label>
+              <input type="text" placeholder="City" class="cls_aramRegCity cls_aramRegInp" id="id_aramRegCity" required>
+              <span class="cls_aramRegErrormsg" id="id_aramReg_arcity">
+              </span>
+            </div>
+
+            <div class="cls_aramRegWrap cls_aramRegWrapState">
+              <label class="cls_aramRegLab">
+                <strong>State</strong>
+              </label>
+              <input type="text" placeholder="State" class="cls_aramRegState cls_aramRegInp" id="id_aramRegState" required>
+              <span class="cls_aramRegErrormsg" id="id_aramReg_arstate">
               </span>
             </div>
 
@@ -118,56 +145,9 @@
               <label class="cls_aramRegLab">
                 <strong id="GenderLabel">Country</strong>
                 <div class="cls_aramRegGenderSel">
-                  <select id="id_aramRegGender" class="cls_aramRegGender cls_aramRegSel">
+                  <select id="id_aramRegCountry" class="cls_aramRegCountry cls_aramRegSel">
                     <option value="">Select</option>
-                    <option value="female">Female</option>
-                    <option value="male">Male</option>
-                    <option value="other">Other</option>
-                  </select>
-                </div>
-              </label>
-              <span class="cls_aramRegErrormsg" id="id_aramReg_argender"></span>
-            </div>
-
-            <div class="cls_aramRegWrap cls_aramRegWrapGender">
-              <label class="cls_aramRegLab">
-                <strong id="GenderLabel">Gender</strong>
-                <div class="cls_aramRegGenderSel">
-                  <select id="id_aramRegGender" class="cls_aramRegGender cls_aramRegSel">
-                    <option value="">Select</option>
-                    <option value="female">Female</option>
-                    <option value="male">Male</option>
-                    <option value="other">Other</option>
-                  </select>
-                </div>
-              </label>
-              <span class="cls_aramRegErrormsg" id="id_aramReg_argender"></span>
-            </div>
-
-            <div class="cls_aramRegWrap cls_aramRegWrapGender">
-              <label class="cls_aramRegLab">
-                <strong id="GenderLabel">Gender</strong>
-                <div class="cls_aramRegGenderSel">
-                  <select id="id_aramRegGender" class="cls_aramRegGender cls_aramRegSel">
-                    <option value="">Select</option>
-                    <option value="female">Female</option>
-                    <option value="male">Male</option>
-                    <option value="other">Other</option>
-                  </select>
-                </div>
-              </label>
-              <span class="cls_aramRegErrormsg" id="id_aramReg_argender"></span>
-            </div>
-
-            <div class="cls_aramRegWrap cls_aramRegWrapGender">
-              <label class="cls_aramRegLab">
-                <strong id="GenderLabel">Gender</strong>
-                <div class="cls_aramRegGenderSel">
-                  <select id="id_aramRegGender" class="cls_aramRegGender cls_aramRegSel">
-                    <option value="">Select</option>
-                    <option value="female">Female</option>
-                    <option value="male">Male</option>
-                    <option value="other">Other</option>
+                    <option value="india">India</option>
                   </select>
                 </div>
               </label>
@@ -175,9 +155,7 @@
             </div>
 
             <div class="cls_aramRegWrap cls_aramRegWrapSubmit">
-              <input id="id_aramRegSubmitButton" name="id_aramRegSubmitButton" type="button" class="cls_aramRegSubmitButton" value="button" onclick = registrationPost();>
-
-              <input id="id_aramRegSubmitButton" name="id_aramRegSubmitButton" type="submit" class="cls_aramRegSubmitButton" value="Submit" onclick = registrationPost();>
+              <input id="id_aramRegSubmitButton" type="button" class="cls_aramRegSubmitButton" value="Submit" onclick=registrationPost();>
             </div>
           </form>
         </div>
