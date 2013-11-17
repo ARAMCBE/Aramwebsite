@@ -2,6 +2,7 @@ var db = require('../db/db.js');
 var user = require('../db/model/user.js');
 var md5 = require('MD5');
 
+
 exports.list = function(req, res){
   res.send("respond with a resource");
 };
@@ -30,7 +31,7 @@ exports.registration = function(req, res) {
 		var requestBody = req.body;
 		var userDetail = createUser(requestBody);
 		user.validate(userDetail, function(error) {
-			if(error === undefined || error === {}){
+			if(error === undefined || Object.keys(error).length == 0 ){
 				persistUser(userDetail, function(error, data) {
 					if(error){ // If error in store in db
 						res.status(400);
@@ -42,6 +43,7 @@ exports.registration = function(req, res) {
 			}else{//If any error in user details
 				console.log("Error in user details", error);
 				res.status(400);
+				console.log("------>", error);
 				res.send(error);
 			}
 		});
@@ -54,20 +56,25 @@ var persistUser = function(user, callback) {
 		+ user.lastname + "','"
 		+ user.emailId + "','"
 		+ user.password + "','"
-		+ user.mobile + "','"
-		+ user.dob + "','"
+		+ user.mobile + "',"
+		+ "to_date('" + user.dob +"','dd/mm/yyyy')" + ",'"
 		+ user.country + "','"
 		+ user.state + "','"
 		+ user.city + "','"
-		+ user.address + "','"
-		+ user.pincode + "','"
+		+ user.address + "',"
+		+ user.pincode + ",'"
 		+ user.gender + "')";
+
+console.log(query);
 
 		db.query(query, [], function(err, data) {
 			if(err){
 				console.log("Error in INSERT");
 			}else{
 				console.log("DATA: ", data);
+				if(data.rowCount > 1){
+					res.send({success:true, username:user.firstname + user.lastname});
+				}
 			}
 		});
 };

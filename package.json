@@ -11,6 +11,6 @@
     "pg":"*",
     "session":"*",
     "MD5":"*",
-    "wait.for":"*"
+    "dateformat":"*"
   }
 }

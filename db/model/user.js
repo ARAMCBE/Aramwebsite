@@ -1,6 +1,7 @@
 
 var md5 = require('MD5');
 var db = require('../db.js');
+var dateFormat = require('dateformat');	
 
 exports.createUser = function (user) {
 	var that = {};
@@ -15,16 +16,15 @@ exports.createUser = function (user) {
 	that.state = user.state;
 	that.city = user.city;
 	that.address = user.address;
-	that.pincode = pincode;
+	that.pincode = user.pincode;
 
 	var validateMail = function(error, cb) {
 		db.query("select count(1) as exists from user_details where email like '" + that.emailId + "'", [], function(err, response) {
 			console.log(response);
 			if(response.rows[0].exists > 0) {
-				error.armail = error.armail || [];
-				error.armail.push(1);  // 1 -> Mail id duplication.
-				cb(error);
+				error.armail = {code:"mailId", message:"MaildId already exists" };
 			}
+			cb(error);
 		});
 	}
 
