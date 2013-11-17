@@ -30,7 +30,7 @@ exports.registration = function(req, res) {
 		var requestBody = req.body;
 		var userDetail = createUser(requestBody);
 		user.validate(userDetail, function(error) {
-			if(error === undefined || error === {}){
+			if(error === undefined || Object.keys(error).length == 0 ){
 				persistUser(userDetail, function(error, data) {
 					if(error){ // If error in store in db
 						res.status(400);
@@ -59,9 +59,11 @@ var persistUser = function(user, callback) {
 		+ user.country + "','"
 		+ user.state + "','"
 		+ user.city + "','"
-		+ user.address + "','"
-		+ user.pincode + "','"
+		+ user.address + "',"
+		+ user.pincode + ",'"
 		+ user.gender + "')";
+
+console.log(query);
 
 		db.query(query, [], function(err, data) {
 			if(err){
