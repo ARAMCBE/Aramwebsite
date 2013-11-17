@@ -19,10 +19,7 @@
   	<article class="container">
       <% include header %>   
   		<article id="id_aramContent" class="cls_aramContent">
-        <div class="cls_aramRegTitle">
-            Create your ARAM Account
-        </div>
-
+        <div class="cls_aramRegTxtCnt"></div>
         <div class="cls_aramRegFormCnt">
           <form class="cls_aramRegForm" id="id_aramRegForm">
             <div class="cls_aramRegWrapName cls_aramRegWrap">
@@ -32,7 +29,7 @@
 
                   <input type="text" pattern="[ a-zA-Z]+" value="" placeholder="Last Name" id="id_aramRegLastName" class="cls_aramRegLastName cls_aramRegInp" required>
               </fieldset>
-              <span class="cls_aramRegcls_aramRegErrormsg" id="id_aramReg_arfirstname">
+              <span class="cls_aramRegErrormsg" id="id_aramReg_arfirstname">
               </span>
               <span class="cls_aramRegErrormsg" id="id_aramReg_arlastname"></span>
             </div>
@@ -42,17 +39,8 @@
                 <strong>Email Address</strong>
                 <input type="text" pattern="^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$" maxlength="30" autocomplete="off" id="id_aramRegEmail" class="cls_aramRegEmail cls_aramRegInp"value="" placeholder="Email" Required>
               </label>
+              <span class="cls_aramRegErrormsg" id="id_aramReg_armailid"></span>
             </div>
-
-            <!--div class="control-group">
-              <label class="control-label" for="inputIcon">Email address</label>
-              <div class="controls">
-                <div class="input-prepend">
-                  <span class="add-on"><i class="icon-envelope"></i></span>
-                  <input class="span2" id="inputIcon" type="text">
-                </div>
-              </div>
-            </div-->
 
             <div class="cls_aramRegWrap cls_aramRegWrapPass">
               <label class="cls_aramRegLab">
@@ -155,7 +143,7 @@
             </div>
 
             <div class="cls_aramRegWrap cls_aramRegWrapSubmit">
-              <input id="id_aramRegSubmitButton" type="button" class="cls_aramRegSubmitButton" value="Submit" onclick=registrationPost();>
+              <input id="id_aramRegSubmitButton" type="button" class="cls_aramRegSubmitButton" value="Submit" onclick="registration.validation();">
             </div>
           </form>
         </div>
@@ -166,8 +154,9 @@
   </body>
 
   <script type="text/javascript" src="/javascripts/jquery.js"></script>
-  <script type="text/javascript" src="/javascripts/ajax.js"></script>    
-  <script type="text/javascript" src="/javascripts/helper.js"></script> 
+  <script type="text/javascript" src="/javascripts/ajax.js"></script>
+  <script type="text/javascript" src="/javascripts/helper.js"></script>
+  <script type="text/javascript" src="/javascripts/registration.js"></script>
   <script src="/javascripts/bootstrap.min.js"></script>
   <script language="javascript">
     $('.dropdown-toggle').dropdown();

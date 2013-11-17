@@ -1,9 +1,12 @@
 .cls_aramRegFormCnt {
 	width: 362px;
-  	float: left;
+  	float: right;
 	margin: 0;
 	padding: 25px;
 	background: #f1f1f1;
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+	border-radius: 6px;
 }
 .cls_aramRegFormCnt strong {
 	margin: 0 0 .5em;
@@ -50,7 +53,11 @@ input.cls_aramRegFirstName, input.cls_aramRegLastName {
 	background-image: -o-linear-gradient(top,#4d90fe,#4787ed);
 	background-image: linear-gradient(top,#4d90fe,#4787ed);
 }
-
 .cls_aramRegWrapSubmit{
 	text-align: right;
+}
+.cls_aramPageTitle {
+	display: inline-block;
+	float: right;
+	margin: 30px 30px 0px 0px;
 }
