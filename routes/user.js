@@ -2,6 +2,7 @@ var db = require('../db/db.js');
 var user = require('../db/model/user.js');
 var md5 = require('MD5');
 
+
 exports.list = function(req, res){
   res.send("respond with a resource");
 };
@@ -42,6 +43,7 @@ exports.registration = function(req, res) {
 			}else{//If any error in user details
 				console.log("Error in user details", error);
 				res.status(400);
+				console.log("------>", error);
 				res.send(error);
 			}
 		});
@@ -54,8 +56,8 @@ var persistUser = function(user, callback) {
 		+ user.lastname + "','"
 		+ user.emailId + "','"
 		+ user.password + "','"
-		+ user.mobile + "','"
-		+ user.dob + "','"
+		+ user.mobile + "',"
+		+ "to_date('" + user.dob +"','dd/mm/yyyy')" + ",'"
 		+ user.country + "','"
 		+ user.state + "','"
 		+ user.city + "','"
@@ -70,6 +72,9 @@ console.log(query);
 				console.log("Error in INSERT");
 			}else{
 				console.log("DATA: ", data);
+				if(data.rowCount > 1){
+					res.send({success:true, username:user.firstname + user.lastname});
+				}
 			}
 		});
 };
