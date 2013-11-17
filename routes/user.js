@@ -13,6 +13,7 @@ exports.login = function(req, res) {
 	}else {
 		var query = "SELECT password, firstname, lastname from user_details where email like '" + req.body.email 
 		+"' and password='" +  md5(req.body.password) + "'";
+		console.log(query);
 
 		db.query(query, [], function(err, response) {
 			console.log(response);
@@ -65,7 +66,7 @@ var persistUser = function(user, callback) {
 		+ user.emailId + "','"
 		+ user.password + "','"
 		+ user.mobile + "',"
-		+ "to_date('" + user.dob +"','dd/mm/yyyy')" + ",'"
+		+ "to_date('" + user.dob +"','yyyy/mm/dd')" + ",'"
 		+ user.country + "','"
 		+ user.state + "','"
 		+ user.city + "','"
@@ -73,6 +74,7 @@ var persistUser = function(user, callback) {
 		+ user.pincode + ",'"
 		+ user.gender + "')";
 
+		console.log(query);
 		db.query(query, [], function(err, data) {
 			if(err){
 				console.log("Error in INSERT");
