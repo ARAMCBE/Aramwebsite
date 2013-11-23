@@ -2,61 +2,57 @@ var db = require('../db/db.js');
 var user = require('../db/model/user.js');
 var md5 = require('MD5');
 
-
 exports.list = function(req, res){
   res.send("respond with a resource");
 };
 
-exports.login = function(req, res) {
-	if(req.session.hash){
-		res.send(JSON.stringify({code:3}));
-	}else {
-		var query = "SELECT password, firstname, lastname from user_details where email like '" + req.body.email 
-		+"' and password='" +  md5(req.body.password) + "'";
-		console.log(query);
+exports.login = function(email, password, done) {
+	var query = "SELECT password, firstname, lastname, email from user_details where email like '" + email 
+	+"' and password='" +  md5(password) + "'";
+	console.log(query);
 
-		db.query(query, [], function(err, response) {
-			console.log(response);
-			var dbRes = response.rows;
-			if(err){
-				console.log("Error in password Retrival", err);
-				res.send(JSON.stringify({code:4})); //Invalid login
-			}
-			if(dbRes.length == 0 || Object.keys(dbRes[0]).length == 0) {
-				res.send(JSON.stringify({code:4}));
-			}
-			if(dbRes.length > 0 && Object.keys(dbRes[0]).length > 0) {
-				var passhash = dbRes[0].password;
-				req.session.hash = dbRes[0].firstname + " " + dbRes[0].lastname;
-				res.send(JSON.stringify({username:req.session.hash, passhash: passhash, success:true}));
-			}
-		});
+	db.query(query, [], function(err, response) {
+		var dbRes = response.rows;
+		if(err){
+			return done(err);
+		}
+		if(dbRes.length == 0 || Object.keys(dbRes[0]).length == 0) {
+			return done(null, false, { message: 'Incorrect username or password' });
+		}
+		if(dbRes.length > 0 && Object.keys(dbRes[0]).length > 0) {
+			return done(null, {password: dbRes[0].password, email: dbRes[0].email});
+		}
+	});
+}
+
+
+exports.isAuthenticated = function(req, res, next) {
+	if(!req.isAuthenticated()) {
+		next();
+	}else{
+		res.send(JSON.stringify({code:6, isValidUser: true}));
 	}
-};
+}
 
 exports.registration = function(req, res) {
-	if(req.session.hash){ //If already logged in
-		res.send(JSON.stringify({code :3, message: "Already logged In"}));
-	}else {
-		var requestBody = req.body;
-		var userDetail = createUser(requestBody);
-		user.validate(userDetail, function(error) {
-			if(error === undefined || Object.keys(error).length == 0 ){
-				persistUser(userDetail, function(error, data) {
-					if(error){ // If error in store in db
-						res.send(JSON.stringify({code: 2, message:"Error in registration"}));
-					}else{
-						res.status(201);
-						res.send({code:5, success: true});
-					}
-				});
-			}else{//If any error in user details
+	var requestBody = req.body;
+	var userDetail = createUser(requestBody);
+	user.validate(userDetail, function(error) {
+		if(error === undefined || Object.keys(error).length == 0 ){
+			persistUser(userDetail, function(error, data) {
+				if(error){ // If error in store in db
+					res.send(JSON.stringify({code: 2, message:"Error in registration"}));
+				}else{
+					res.status(201);
+					res.send(JSON.stringify({code:5, success: true}));
+				}
+			});
+		}else{//If any error in user details
 
-				console.log("Error in user details", error);
-				res.send(JSON.stringify(error));
-			}
-		});
-	}
+			console.log("Error in user details", error);
+			res.send(JSON.stringify(error));
+		}
+	});
 };
 
 var persistUser = function(user, callback) {
@@ -66,7 +62,7 @@ var persistUser = function(user, callback) {
 		+ user.emailId + "','"
 		+ user.password + "','"
 		+ user.mobile + "',"
-		+ "to_date('" + user.dob +"','yyyy/mm/dd')" + ",'"
+		+ "to_date('" + user.dob +"','dd/mm/yyyy')" + ",'"
 		+ user.country + "','"
 		+ user.state + "','"
 		+ user.city + "','"
