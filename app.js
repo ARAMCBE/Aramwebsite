@@ -55,12 +55,17 @@ app.get('/index', routes.index);
 app.get('/about', routes.about);
 
 app.get('/login', function(req, res){
-  res.render('login');
+  res.send(JSON.stringify({success:false}));
 });
 
 app.post('/login',  passport.authenticate('local', { failureRedirect: '/login'}),
   function(req, res) {
-    res.redirect('/');
+    res.send(JSON.stringify({success:true, username:req.user.username}));
+});
+
+app.post('/logout', function(req, res) {
+  req.logout();
+  res.send(JSON.stringify({success:true}));
 });
 
 app.post('/registration', user.registration);

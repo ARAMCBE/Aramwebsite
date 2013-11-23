@@ -20,7 +20,8 @@ exports.login = function(email, password, done) {
 			return done(null, false, { message: 'Incorrect username or password' });
 		}
 		if(dbRes.length > 0 && Object.keys(dbRes[0]).length > 0) {
-			return done(null, {password: dbRes[0].password, email: dbRes[0].email});
+			var displayName = dbRes[0].firstname + " " + dbRes[0].lastname;
+			return done(null, {username: displayName, email: dbRes[0].email});
 		}
 	});
 }

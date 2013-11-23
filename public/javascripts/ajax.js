@@ -14,9 +14,19 @@ var login = function() {
 	$.post('/login', {email:emailId, password:password}, function (data){
 		var jsonData = JSON.parse(data);
 		if(jsonData.success){
-			alert(JSON.stringify(jsonData));
-		}else{
-			alert($.resultCodes[jsonData.code]);
+			// alert(JSON.stringify(jsonData));
+			$("#login_div").hide();
+			$("#logout_btn").css({ visibility: "visible"});
+		}
+	});
+}
+
+var logout = function(){
+	$.post('/logout', {}, function(data){
+		var jsonData = JSON.parse(data);
+		if(jsonData.success){
+			$("#login_div").show();
+			$("#logout_btn").css({ visibility: "hidden"});
 		}
 	});
 }
