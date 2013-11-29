@@ -31,7 +31,7 @@ exports.isAuthenticated = function(req, res, next) {
 	if(!req.isAuthenticated()) {
 		next();
 	}else{
-		res.send(JSON.stringify({code:6, isValidUser: true}));
+		res.redirect("/");
 	}
 }
 

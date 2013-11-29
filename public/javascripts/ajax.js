@@ -14,9 +14,11 @@ var login = function() {
 	$.post('/login', {email:emailId, password:password}, function (data){
 		var jsonData = JSON.parse(data);
 		if(jsonData.success){
-			// alert(JSON.stringify(jsonData));
-			$("#login_div").hide();
-			$("#logout_btn").css({ visibility: "visible"});
+			$("#login-error").css("visibility", "hidden");
+			window.location.reload(true);
+		}else{
+			$("#login-error").css("visibility", "visible");
+			$("#email").select();
 		}
 	});
 }
@@ -25,8 +27,8 @@ var logout = function(){
 	$.post('/logout', {}, function(data){
 		var jsonData = JSON.parse(data);
 		if(jsonData.success){
-			$("#login_div").show();
-			$("#logout_btn").css({ visibility: "hidden"});
+			window.location.reload(true);	
+			$("#user_name").text("");
 		}
 	});
 }
@@ -34,3 +36,11 @@ var logout = function(){
 var registrationPost = function(jsonObj){
 	$.post('/registration', jsonObj, registration.afterRegistrationPost);
 };
+
+// var chekcUserStatus = (function(){
+// 	if(req.cookie['connect.sid']){
+// 		alert("hello");
+// 		$("#login_div").hide();
+// 		$("#logout_btn").css({ visibility: "visible"});	
+// 	}
+// })();

@@ -58,7 +58,7 @@ app.get('/login', function(req, res){
   res.send(JSON.stringify({success:false}));
 });
 
-app.post('/login',  passport.authenticate('local', { failureRedirect: '/login'}),
+app.post('/login',  passport.authenticate('local', { failureRedirect: '/login' }),
   function(req, res) {
     res.send(JSON.stringify({success:true, username:req.user.username}));
 });
@@ -70,7 +70,7 @@ app.post('/logout', function(req, res) {
 
 app.post('/registration', user.registration);
 app.get('/registration', user.isAuthenticated, function(req, res){
-	res.render('registration');
+	res.render('registration', {isValidUser : req.isAuthenticated()});
 });
 
 http.createServer(app).listen(app.get('port'), function(){
