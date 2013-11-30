@@ -36,11 +36,3 @@ var logout = function(){
 var registrationPost = function(jsonObj){
 	$.post('/registration', jsonObj, registration.afterRegistrationPost);
 };
-
-// var chekcUserStatus = (function(){
-// 	if(req.cookie['connect.sid']){
-// 		alert("hello");
-// 		$("#login_div").hide();
-// 		$("#logout_btn").css({ visibility: "visible"});	
-// 	}
-// })();

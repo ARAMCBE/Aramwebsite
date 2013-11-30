@@ -101,7 +101,10 @@ new (function(registrationObj){
 	    }
 	},
 	registration.afterRegistrationPost = function(data){
-		console.log(data);
+		var jsonData = JSON.parse(data);
+		if(jsonData.success){
+			$("#id_aramContent").hide();			
+		}
 	};
 })(registration);
 

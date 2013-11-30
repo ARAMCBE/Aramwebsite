@@ -19,7 +19,9 @@
   	<article class="container">
       <% include header %>   
   		<article id="id_aramContent" class="cls_aramContent">
-        <div class="cls_aramRegTxtCnt"></div>
+        <div class="cls_aramRegTxtCnt">
+            <span class="alert alert-info">Registration is Successful</span>
+        </div>
         <div class="cls_aramRegFormCnt">
           <form class="cls_aramRegForm" id="id_aramRegForm">
             <div class="cls_aramRegWrapName cls_aramRegWrap">
@@ -62,8 +64,8 @@
 
             <div class="cls_aramRegWrap cls_aramRegWrapDate">
               <label class="cls_aramRegLab">
-                <strong>Date</strong>
-                <input type="date" class="cls_aramRegDate cls_aramRegInp" id="id_aramRegDate" required>
+                <strong>Date of Birth</strong>
+                <input type="date" class="cls_aramRegDate cls_aramRegInp" id="id_aramRegDate" placeholder="DD/MM/YYYY" required>
               </label>
               <span class="cls_aramRegErrormsg" id="id_aramReg_ardate">
               </span>

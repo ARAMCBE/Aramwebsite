@@ -7,11 +7,7 @@ exports.list = function(req, res){
 };
 
 exports.login = function(email, password, done) {
-	var query = "SELECT password, firstname, lastname, email from user_details where email like '" + email 
-	+"' and password='" +  md5(password) + "'";
-	console.log(query);
-
-	db.query(query, [], function(err, response) {
+	var loginCallback = function(err, response) {
 		var dbRes = response.rows;
 		if(err){
 			return done(err);
@@ -23,9 +19,9 @@ exports.login = function(email, password, done) {
 			var displayName = dbRes[0].firstname + " " + dbRes[0].lastname;
 			return done(null, {username: displayName, email: dbRes[0].email});
 		}
-	});
+	};
+	user.login(email, password, loginCallback);
 }
-
 
 exports.isAuthenticated = function(req, res, next) {
 	if(!req.isAuthenticated()) {
@@ -38,50 +34,23 @@ exports.isAuthenticated = function(req, res, next) {
 exports.registration = function(req, res) {
 	var requestBody = req.body;
 	var userDetail = createUser(requestBody);
-	user.validate(userDetail, function(error) {
+	userDetail.validateMail(function(error) {
+		console.log("Validating ....");
 		if(error === undefined || Object.keys(error).length == 0 ){
-			persistUser(userDetail, function(error, data) {
-				if(error){ // If error in store in db
+			console.log("No error");
+			userDetail.save(function(error, data) {
+				if(error) { // If error while inserting in db
 					res.send(JSON.stringify({code: 2, message:"Error in registration"}));
-				}else{
+				} else { // Happy path
 					res.status(201);
 					res.send(JSON.stringify({code:5, success: true}));
 				}
 			});
-		}else{//If any error in user details
-
+		}else{ // If any error in user details
 			console.log("Error in user details", error);
 			res.send(JSON.stringify(error));
 		}
 	});
-};
-
-var persistUser = function(user, callback) {
-	var query = "INSERT INTO user_details (firstname, lastname, email, password, mobile, dob, country, state, city , address, pincode, gender)VALUES('" 
-		+ user.firstname + "','"
-		+ user.lastname + "','"
-		+ user.emailId + "','"
-		+ user.password + "','"
-		+ user.mobile + "',"
-		+ "to_date('" + user.dob +"','dd/mm/yyyy')" + ",'"
-		+ user.country + "','"
-		+ user.state + "','"
-		+ user.city + "','"
-		+ user.address + "',"
-		+ user.pincode + ",'"
-		+ user.gender + "')";
-
-		console.log(query);
-		db.query(query, [], function(err, data) {
-			if(err){
-				console.log("Error in INSERT");
-			}else{
-				console.log("DATA: ", data);
-				if(data.rowCount > 1){
-					res.send({success:true, username:user.firstname + user.lastname});
-				}
-			}
-		});
 };
 
 var createUser = function(body) {
