@@ -19,10 +19,13 @@
   	<article class="container">
       <% include header %>   
   		<article id="id_aramContent" class="cls_aramContent">
-        <div class="cls_aramRegTxtCnt">
-            <span class="alert alert-info">Registration is Successful</span>
-        </div>
-        <div class="cls_aramRegFormCnt">
+        <span id="reg_success" class="alert alert-info" style="visibility:hidden">
+          Registration is Successful
+        </span>
+        <span id="reg_failure" class="alert alert-warning" style="visibility:hidden">
+          Registration Failed. Please try again.
+        </span>
+        <div id="id_aramform" class="cls_aramRegFormCnt">
           <form class="cls_aramRegForm" id="id_aramRegForm">
             <div class="cls_aramRegWrapName cls_aramRegWrap">
               <fieldset>

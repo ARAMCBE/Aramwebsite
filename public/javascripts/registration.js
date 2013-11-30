@@ -103,8 +103,15 @@ new (function(registrationObj){
 	registration.afterRegistrationPost = function(data){
 		var jsonData = JSON.parse(data);
 		if(jsonData.success){
-			$("#id_aramContent").hide();			
+			$("#id_aramform").hide();
+			$("#reg_failure").css("visibility", "hidden");
+			$("#reg_success").css("visibility", "visible");			
+		}else{
+			$("#id_aramform").show();
+			$("#reg_failure").css("visibility", "visible");
+			$("#reg_success").css("visibility", "hidden");			
 		}
+
 	};
 })(registration);
 
