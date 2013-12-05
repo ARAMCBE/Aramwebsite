@@ -2,30 +2,28 @@
 <html>
   <head>
     <title>About</title>
+    <link rel='stylesheet' href='/stylesheets/bootstrap-responsive.css'/>
+    <link rel='stylesheet' href='/stylesheets/bootstrap-theme.css'/>
     <link rel='stylesheet' href='/stylesheets/bootstrap.css'/>
-    <style>
-      .home{
-        color: #555555;
-        text-decoration: none;
-        background-color: #e5e5e5;
-        -webkit-box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.125);
-        -moz-box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.125);
-        box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.125);
-      }
-    </style>
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
   </head>
   <body>
-    <div class="container">
-      <% include header.ejs %>
-      <div class="pagination-centered alert alert-danger">
-        <h1>This page is still in development</h1>
+    <div class="row">
+      <div class="col-xs-12 col-md-12">
+          <nav class="navbar navbar-inverse">
+            <ul>
+              <li class="active">Home</li>
+              <li class="active">Home</li>
+            </ul>
+          </nav>
       </div>
-    </div> 
+    </div>  
   </body>
   <script type="text/javascript" src="/javascripts/jquery.js"></script>
   <script type="text/javascript" src="/javascripts/ajax.js"></script>    
   <script type="text/javascript" src="/javascripts/helper.js"></script> 
-  <script src="/javascripts/bootstrap.min.js"></script>
+  <script src="/js/bootstrap.js"></script>
   <script type="text/javascript">
       $('.navigation').removeClass('active');
       $('.about').addClass('active');
