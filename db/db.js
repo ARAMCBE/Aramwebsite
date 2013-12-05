@@ -1,7 +1,7 @@
 var pg = require('pg');
 
 
-var conString = process.env.DATABASE_URL || "postgres://aram:arampass@localhost/aramwebsite";
+var conString = process.env.HEROKU_POSTGRESQL_COPPER_URL || "postgres://aram:arampass@localhost/aramwebsite";
 
 module.exports = {
    query: function(text, values, cb) {
