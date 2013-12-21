@@ -11,18 +11,19 @@
             Invalid Username / Password
           </div>
           <div class="form-group">
-            <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Enter email">
+            <input id='email' type="email" class="form-control" id="exampleInputEmail2" placeholder="Enter email">
           </div>
           <div class="form-group">
-            <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Password">
+            <input id='password' type="password" class="form-control" id="exampleInputPassword2" placeholder="Password">
           </div>
 
           <input type="button" value="Login" class="btn" onClick="login()"/>
+          <a href='/registration'><span>Sign Up<span></a>
       </form>
        <% } %>
        <%if (isValidUser) {%>
             <div class="navbar-form"  style="float:right">
-              <span id="display_name"></span>
+              <span id='display_name' class='alert alert-success'></span>
               <input type="button" value="Logout" class="btn" onClick="logout()"  id="logout_btn"/>
             </div>
        <% } %>

@@ -15,6 +15,7 @@ var login = function() {
 		var jsonData = JSON.parse(data);
 		if(jsonData.success){
 			$("#login-error").css("visibility", "hidden");
+            $("#display_name").text(jsonData.username);
 			window.location.reload(true);
 		}else{
 			$("#login-error").css("visibility", "visible");
@@ -28,7 +29,7 @@ var logout = function(){
 		var jsonData = JSON.parse(data);
 		if(jsonData.success){
 			window.location.reload(true);	
-			$("#user_name").text("");
+			$("#display_name").text("");
 		}
 	});
 }
