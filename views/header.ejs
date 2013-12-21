@@ -1,32 +1,25 @@
-<div class="row">
-  <div class="col-md-12">
-      <nav class="navbar navbar-inverse" role="navigation">
-       <ul class="nav navbar-nav" style="float:left">
-         <li class="navigation home active"><a href="/">Home</a></li>
-         <li class="navigation about active"><a href="/about">About Us</a></li>
-       </ul>
-       <%if (!isValidUser) {%>
-      <form class="navbar-form" role="form" style="float:right">
-          <div id="login-error" class="alert alert-danger" style="visibility:hidden; float:left">
-            Invalid Username / Password
-          </div>
-          <div class="form-group">
-            <input id='email' type="email" class="form-control" id="exampleInputEmail2" placeholder="Enter email">
-          </div>
-          <div class="form-group">
-            <input id='password' type="password" class="form-control" id="exampleInputPassword2" placeholder="Password">
-          </div>
-
-          <input type="button" value="Login" class="btn" onClick="login()"/>
-          <a href='/registration'><span>Sign Up<span></a>
-      </form>
-       <% } %>
-       <%if (isValidUser) {%>
-            <div class="navbar-form"  style="float:right">
-              <span id='display_name' class='alert alert-success'></span>
-              <input type="button" value="Logout" class="btn" onClick="logout()"  id="logout_btn"/>
+<header class='nav navbar-inverse' role="banner">
+<span class="btn social facebook" style="padding:14px; margin-left:5px;"></span>
+<span class="btn social twitter" style="padding:14px;"></span>
+    <%if (!isValidUser) {%>
+        <form class='form-inline  navbar-right' role="form">
+            <div id="login-error" class="alert alert-danger" style="visibility:hidden; float:left">
+              Invalid Username / Password
             </div>
-       <% } %>
-      </nav>
-  </div>
-</div>
+            <div class="form-group">
+              <input id='email' type="email" class="form-control" placeholder="Enter email">
+            </div>
+            <div class="form-group">
+              <input id='password' type="password" class="form-control" placeholder="Password">
+            </div>
+            <input type="button" value="Login" class="btn" onClick="login()"/>
+            <a href='/registration'><span>Sign Up<span></a>
+        </form>
+   <% } %>
+   <%if (isValidUser) {%>
+        <div class='navbar-right' style="padding:5px;">
+            <span id='display_name' style="padding:5px; color:grey;"><%= username %></span>
+            <a type="button" value="Logout" onClick="logout()"  id="logout_btn">Logout</a>
+        </div>
+   <% } %>
+</header>

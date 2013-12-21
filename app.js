@@ -54,6 +54,12 @@ app.get('/index', routes.index);
 
 app.get('/about', routes.about);
 
+app.get('/faq', routes.faq);
+
+app.get('/gallery', routes.gallery);
+
+app.get('/contactus', routes.contactus);
+
 app.get('/login', function(req, res){
   res.send(JSON.stringify({success:false}));
 });
@@ -70,7 +76,7 @@ app.post('/logout', function(req, res) {
 
 app.post('/registration', user.registration);
 app.get('/registration', user.isAuthenticated, function(req, res){
-	res.render('registration', {isValidUser : req.isAuthenticated()});
+	res.render('registration', {isValidUser : req.isAuthenticated(), username:req.user.username});
 });
 
 http.createServer(app).listen(app.get('port'), function(){

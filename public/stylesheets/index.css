@@ -1,0 +1,43 @@
+.wrap-content {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: 10px;
+    margin-top: 5px;
+}
+
+.social{
+    position: relative;
+    top: 1px;
+    display: inline-block;
+    font-family: 'Glyphicons Halflings';
+    -webkit-font-smoothing: antialiased;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.facebook {
+    background:url('../images/social.jpg') -167px -10px;
+}
+
+.twitter {
+    background:url('../images/social.jpg') -129px -10px;
+}
+
+.menu-border {
+    padding-top:3px;
+    border: 1px solid rgba(1, 1, 1, 2);}
+
+.border {
+    background-color: #FFFFFF;
+    border-color: #DDDDDD;
+    border-radius: 4px 4px 4px 4px;
+    box-shadow: none;
+    margin-left: 0px;
+    margin-right: 0px;
+    border: 1px solid rgba(1, 1, 1, 1);
+    padding:2px;
+}
+
