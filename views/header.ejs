@@ -1,36 +1,31 @@
-<div class="hero-unit" style="padding: 50px 0px 15px 50px; overflow: hidden;">
-  <div class="navbar navbar-fixed-top">
-    <div class="navbar-inner">
-      <div class="container-fluid">     
-        <ul class="nav" id="menu">
-          <li class="navigation index"><a href="/">Home</a></li> 
-          <li class="navigation about"><a href="/about">About Us</a></li> 
-        </ul>
-
-        <%if (!isValidUser) {%>  
-          <form class="navbar-search pull-right" id="login_div">
-
-            <span id="login-error" class="alert alert-error" style="visibility:hidden">
-              Invalid Username / Password
-            </span>
-
-            <input type="text" class="span2" placeholder="Email" id='email'> 
-            <input type="password" class="span2" placeholder="Password" id='password'>
-            <input type="button" value="Login" class="btn" onClick="login()"/>
-            <a type="button" href="/registration">Sign Up</a>
-          </form>        
-        <% } %>
-
-        <%if (isValidUser) {%>
-          <div class="navbar-search pull-right">
-            <span id="display_name"></span>
-            <input type="button" value="Logout" class="btn" onClick="logout()"  id="logout_btn"/>
+<div class="row">
+  <div class="col-md-12">
+      <nav class="navbar navbar-inverse" role="navigation">
+       <ul class="nav navbar-nav" style="float:left">
+         <li class="navigation home active"><a href="/">Home</a></li>
+         <li class="navigation about active"><a href="/about">About Us</a></li>
+       </ul>
+       <%if (!isValidUser) {%>
+      <form class="navbar-form" role="form" style="float:right">
+          <div id="login-error" class="alert alert-danger" style="visibility:hidden; float:left">
+            Invalid Username / Password
           </div>
-        <% } %>
+          <div class="form-group">
+            <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Enter email">
+          </div>
+          <div class="form-group">
+            <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Password">
+          </div>
 
-      </div>
-    </div>
-  </div>  
- <h1 class="cls_aramPageName" style="display:inline-block;float: left;">ARAM</h1>
- <h3 id="id_aramPageTitle" class="cls_aramPageTitle"></h3>
+          <input type="button" value="Login" class="btn" onClick="login()"/>
+      </form>
+       <% } %>
+       <%if (isValidUser) {%>
+            <div class="navbar-form"  style="float:right">
+              <span id="display_name"></span>
+              <input type="button" value="Logout" class="btn" onClick="logout()"  id="logout_btn"/>
+            </div>
+       <% } %>
+      </nav>
+  </div>
 </div>

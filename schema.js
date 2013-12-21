@@ -1,5 +1,5 @@
 var pg = require('pg').native
-  , connectionString = process.env.HEROKU_POSTGRESQL_COPPER_URL || "postgres://aram:arampass@localhost/aramwebsite"
+  , connectionString = process.env.DATABASE_URL || "postgres://aram:arampass@localhost/aramwebsite"
   , client
   , query;
 
