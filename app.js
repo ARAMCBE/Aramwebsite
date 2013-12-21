@@ -75,9 +75,7 @@ app.post('/logout', function(req, res) {
 });
 
 app.post('/registration', user.registration);
-app.get('/registration', user.isAuthenticated, function(req, res){
-	res.render('registration', {isValidUser : req.isAuthenticated(), username:req.user.username});
-});
+app.get('/registration', user.isAuthenticated, routes.registration);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

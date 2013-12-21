@@ -24,3 +24,7 @@ exports.gallery = function(req, res) {
 exports.contactus = function(req, res) {
     res.render('contactus', {isValidUser : req.isAuthenticated(), username:username(req)});
 };
+
+exports.registration = function(req, res){
+    res.render('registration', {isValidUser : req.isAuthenticated(), username:username(req)});
+}
