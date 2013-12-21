@@ -5,6 +5,9 @@
     <link rel='stylesheet' href='/stylesheets/bootstrap-theme.css'/>
     <link rel='stylesheet' href='/stylesheets/bootstrap.css'/>
     <link rel='stylesheet' href='/stylesheets/index.css'/>
+    <link rel='stylesheet' href='/stylesheets/gallery.css'/>
+    <link rel='stylesheet' href='/stylesheets/owl.theme.css'/>
+    <link rel='stylesheet' href='/stylesheets/owl.carousel.css'/>
   </head>
   <body>
         <div class='row'>
@@ -23,10 +26,19 @@
                     <% include menu.ejs %>
                 </div>
             </div>
+
             <div class='row'>
                 <div class='col-md-8'>
-                    <div class='border'>
-                        <h1>Content Area</h1>
+                    <div id="owl-demo">
+                        <div class="item"><img src="/images/1.jpg" alt="Owl Image"></div>
+                        <div class="item"><img src="/images/2.jpg" alt="Owl Image"></div>
+                        <div class="item"><img src="/images/3.jpg" alt="Owl Image"></div>
+                    </div>
+                    <div class="customNavigation">
+                        <a class="btn prev"><span class="glyphicon glyphicon-arrow-left"></span></a>
+                        <a class="btn next"><span class="glyphicon glyphicon-arrow-right"></span></a>
+                        <a class="btn play"><span class="glyphicon glyphicon-play-circle"></span></a>
+                        <a class="btn stop"><span class="glyphicon glyphicon-stop"></span></a>
                     </div>
                 </div>
                 <div class='col-md-4'>
@@ -42,11 +54,36 @@
   </body>
 
   <script type="text/javascript" src="/javascripts/jquery.js"></script>
-  <script type="text/javascript" src="/javascripts/ajax.js"></script>    
-  <script type="text/javascript" src="/javascripts/helper.js"></script> 
-  <script src="/js/bootstrap.js"></script>
+  <script type="text/javascript" src="/javascripts/ajax.js"></script>
+  <script type="text/javascript" src="/javascripts/helper.js"></script>
+  <script type="text/javascript" src="/javascripts/owl.carousel.js"></script>
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
   <script type="text/javascript">
       $('.navigation').removeClass('active');
       $('.gallery').addClass('active');
+      $(document).ready(function() {
+          var owl = $("#owl-demo");
+
+          owl.owlCarousel({
+              items : 1, //10 items above 1000px browser width
+              itemsDesktop : [1000,1], //5 items between 1000px and 901px
+              itemsDesktopSmall : [900,1], // betweem 900px and 601px
+              itemsTablet: [600,1], //2 items between 600 and 0
+              itemsMobile : false
+          });
+
+          $(".next").click(function(){
+            owl.trigger('owl.next');
+          })
+          $(".prev").click(function(){
+            owl.trigger('owl.prev');
+          })
+          $(".play").click(function(){
+            owl.trigger('owl.play',2000); //owl.play event accept autoPlay speed as second parameter
+          })
+          $(".stop").click(function(){
+            owl.trigger('owl.stop');
+          })
+      });
   </script>
 </html>
