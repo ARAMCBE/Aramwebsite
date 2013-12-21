@@ -4,6 +4,7 @@
     <title>Aram_Registration</title> 
     <link rel='stylesheet' href='/stylesheets/bootstrap.css'/>
     <link rel='stylesheet' href='/stylesheets/registration.css'/>
+    <link rel='stylesheet' href='/stylesheets/index.css'/>
     <style>
       .registration{
         color: #555555;
@@ -16,146 +17,173 @@
     </style>
   </head>
   <body>
-  	<article class="container">
-      <% include header %>   
-  		<article id="id_aramContent" class="cls_aramContent">
-        <span id="reg_success" class="alert alert-info" style="visibility:hidden">
-          Registration is Successful
-        </span>
-        <span id="reg_failure" class="alert alert-warning" style="visibility:hidden">
-          Registration Failed. Please try again.
-        </span>
-        <div id="id_aramform" class="cls_aramRegFormCnt">
-          <form class="cls_aramRegForm" id="id_aramRegForm">
-            <div class="cls_aramRegWrapName cls_aramRegWrap">
-              <fieldset>
-                <strong>Name</strong>
-                  <input type="text" pattern="[ a-zA-Z]+" value="" placeholder="First Name" id="id_aramRegFirstName" class="cls_aramRegFirstName cls_aramRegInp" required>
-
-                  <input type="text" pattern="[ a-zA-Z]+" value="" placeholder="Last Name" id="id_aramRegLastName" class="cls_aramRegLastName cls_aramRegInp" required>
-              </fieldset>
-              <span class="cls_aramRegErrormsg" id="id_aramReg_arfirstname">
-              </span>
-              <span class="cls_aramRegErrormsg" id="id_aramReg_arlastname"></span>
+        <div class='row'>
+            <div class='col-md-12'>
+                <% include header.ejs %>
             </div>
-
-            <div class="cls_aramRegWrap cls_aramRegWrapEmail">
-              <label class="cls_aramRegLab">
-                <strong>Email Address</strong>
-                <input type="text" pattern="^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$" maxlength="30" autocomplete="off" id="id_aramRegEmail" class="cls_aramRegEmail cls_aramRegInp"value="" placeholder="Email" Required>
-              </label>
-              <span class="cls_aramRegErrormsg" id="id_aramReg_armailid"></span>
-            </div>
-
-            <div class="cls_aramRegWrap cls_aramRegWrapPass">
-              <label class="cls_aramRegLab">
-                <strong>Create a password</strong>
-                <input type="password" id="id_aramRegPass" placeholder="Password" class="cls_aramRegPass cls_aramRegInp" required oncontextmenu="return false;">
-              </label>
-              <span class="cls_aramRegErrormsg" id="id_aramReg_arpasswd"></span>
-            </div>
-
-            <div class="cls_aramRegWrap cls_aramRegWrapRePass">
-              <label class="cls_aramRegLab">
-                <strong>Confirm your password</strong>
-                <input type="password" class="cls_aramRegRePass cls_aramRegInp" placeholder="Reenter Password" id="id_aramRegRePass" required onpaste="return false;" oncontextmenu="return false;">
-              </label>
-              <span class="cls_aramRegErrormsg" id="id_aramReg_arrepasswd">
-              </span>
-            </div>
-            
-
-            <div class="cls_aramRegWrap cls_aramRegWrapDate">
-              <label class="cls_aramRegLab">
-                <strong>Date of Birth</strong>
-                <input type="date" class="cls_aramRegDate cls_aramRegInp" id="id_aramRegDate" placeholder="DD/MM/YYYY" required>
-              </label>
-              <span class="cls_aramRegErrormsg" id="id_aramReg_ardate">
-              </span>
-            </div>
-
-            <div class="cls_aramRegWrap cls_aramRegWrapGender">
-              <label class="cls_aramRegLab">
-                <strong id="GenderLabel">Gender</strong>
-                <div class="cls_aramRegGenderSel">
-                  <select id="id_aramRegGender" class="cls_aramRegGender cls_aramRegSel">
-                    <option value="">Select</option>
-                    <option value="female">Female</option>
-                    <option value="male">Male</option>
-                    <option value="other">Other</option>
-                  </select>
-                </div>
-              </label>
-              <span class="cls_aramRegErrormsg" id="id_aramReg_argender"></span>
-            </div>
-
-            <div class="cls_aramRegWrap cls_aramRegWrapPhone">
-              <label class="cls_aramRegLab">
-                <strong>Mobile phone</strong>
-              </label>
-              <input type="number" pattern=".{10, 11}" placeholder="Mobile Phone" class="cls_aramRegPhone cls_aramRegInp" id="id_aramRegPhone" required maxlength=11>
-              <span class="cls_aramRegErrormsg" id="id_aramReg_arphonenumber">
-              </span>
-            </div>
-
-            <div class="cls_aramRegWrap cls_aramRegWrapAddrs">
-              <label class="cls_aramRegLab">
-                <strong>Address</strong>
-              </label>
-              <textarea class="cls_aramRegAddrs cls_aramRegInp" id="id_aramRegAddrs" cols="40" rows="5"></textarea>
-              <span class="cls_aramRegErrormsg" id="id_aramReg_araddrs">
-              </span>
-            </div>
-
-            <div class="cls_aramRegWrap cls_aramRegWrapPin">
-              <label class="cls_aramRegLab">
-                <strong>Pin</strong>
-              </label>
-              <input type="number" placeholder="Pin" class="cls_aramRegPin cls_aramRegInp" id="id_aramRegPin" required maxlength=6>
-              <span class="cls_aramRegErrormsg" id="id_aramReg_arpin">
-              </span>
-            </div>
-
-            <div class="cls_aramRegWrap cls_aramRegWrapCity">
-              <label class="cls_aramRegLab">
-                <strong>City</strong>
-              </label>
-              <input type="text" placeholder="City" class="cls_aramRegCity cls_aramRegInp" id="id_aramRegCity" required>
-              <span class="cls_aramRegErrormsg" id="id_aramReg_arcity">
-              </span>
-            </div>
-
-            <div class="cls_aramRegWrap cls_aramRegWrapState">
-              <label class="cls_aramRegLab">
-                <strong>State</strong>
-              </label>
-              <input type="text" placeholder="State" class="cls_aramRegState cls_aramRegInp" id="id_aramRegState" required>
-              <span class="cls_aramRegErrormsg" id="id_aramReg_arstate">
-              </span>
-            </div>
-
-            <div class="cls_aramRegWrap cls_aramRegWrapGender">
-              <label class="cls_aramRegLab">
-                <strong id="GenderLabel">Country</strong>
-                <div class="cls_aramRegGenderSel">
-                  <select id="id_aramRegCountry" class="cls_aramRegCountry cls_aramRegSel">
-                    <option value="">Select</option>
-                    <option value="india">India</option>
-                  </select>
-                </div>
-              </label>
-              <span class="cls_aramRegErrormsg" id="id_aramReg_argender"></span>
-            </div>
-
-            <div class="cls_aramRegWrap cls_aramRegWrapSubmit">
-              <input id="id_aramRegSubmitButton" type="button" class="cls_aramRegSubmitButton" value="Submit" onclick="registration.validation();">
-            </div>
-          </form>
         </div>
-      </article>
-      <!--footer -->
+        <div class='wrap-content'>
+            <div class='row'>
+                <div class='col-md-12'>
+                    <h1>ARAM</h1>
+                </div>
+            </div>
+            <div class='row'>
+                <div class='col-md-12'>
+                    <% include menu.ejs %>
+                </div>
+            </div>
+        </div>
+        <div class='wrap-content'>
+            <div class='row'>
+                <div class='col-md-8'>
+                    <span id="reg_success" class="alert alert-info" style="visibility:hidden">
+                      Registration is Successful
+                    </span>
+                </div>
+                <div class='col-md-4'>
+                    <article id="id_aramContent" class="cls_aramContent">
 
-    </article>
+                        <span id="reg_failure" class="alert alert-warning" style="visibility:hidden">
+                          Registration Failed. Please try again.
+                        </span>
+                        <div id="id_aramform" class="cls_aramRegFormCnt">
+                          <form class="cls_aramRegForm" id="id_aramRegForm">
+                            <div class="cls_aramRegWrapName cls_aramRegWrap">
+                              <fieldset>
+                                <strong>Name</strong>
+                                  <input type="text" pattern="[ a-zA-Z]+" value="" placeholder="First Name" id="id_aramRegFirstName" class="cls_aramRegFirstName cls_aramRegInp" required>
+                                  <span class="cls_aramRegErrormsg" id="id_aramReg_arfirstname">
+                                                            </span>
+                                  <input type="text" pattern="[ a-zA-Z]+" value="" placeholder="Last Name" id="id_aramRegLastName" class="cls_aramRegLastName cls_aramRegInp" required>
+                                  <span class="cls_aramRegErrormsg" id="id_aramReg_arlastname"></span>
+                              </fieldset>
+
+
+                            </div>
+
+                            <div class="cls_aramRegWrap cls_aramRegWrapEmail">
+                              <label class="cls_aramRegLab">
+                                <strong>Email Address</strong>
+                                <input type="text" pattern="^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$" maxlength="30" autocomplete="off" id="id_aramRegEmail" class="cls_aramRegEmail cls_aramRegInp"value="" placeholder="Email" Required>
+                              </label>
+                              <span class="cls_aramRegErrormsg" id="id_aramReg_armailid"></span>
+                            </div>
+
+                            <div class="cls_aramRegWrap cls_aramRegWrapPass">
+                              <label class="cls_aramRegLab">
+                                <strong>Create a password</strong>
+                                <input type="password" id="id_aramRegPass" placeholder="Password" class="cls_aramRegPass cls_aramRegInp" required oncontextmenu="return false;">
+                              </label>
+                              <span class="cls_aramRegErrormsg" id="id_aramReg_arpasswd"></span>
+                            </div>
+
+                            <div class="cls_aramRegWrap cls_aramRegWrapRePass">
+                              <label class="cls_aramRegLab">
+                                <strong>Confirm your password</strong>
+                                <input type="password" class="cls_aramRegRePass cls_aramRegInp" placeholder="Reenter Password" id="id_aramRegRePass" required onpaste="return false;" oncontextmenu="return false;">
+                              </label>
+                              <span class="cls_aramRegErrormsg" id="id_aramReg_arrepasswd">
+                              </span>
+                            </div>
+
+
+                            <div class="cls_aramRegWrap cls_aramRegWrapDate">
+                              <label class="cls_aramRegLab">
+                                <strong>Date of Birth</strong>
+                                <input type="date" class="cls_aramRegDate cls_aramRegInp" id="id_aramRegDate" placeholder="DD/MM/YYYY" required>
+                              </label>
+                              <span class="cls_aramRegErrormsg" id="id_aramReg_ardate">
+                              </span>
+                            </div>
+
+                            <div class="cls_aramRegWrap cls_aramRegWrapGender">
+                              <label class="cls_aramRegLab">
+                                <strong id="GenderLabel">Gender</strong>
+                                <div class="cls_aramRegGenderSel">
+                                  <select id="id_aramRegGender" class="cls_aramRegGender cls_aramRegSel">
+                                    <option value="">Select</option>
+                                    <option value="female">Female</option>
+                                    <option value="male">Male</option>
+                                    <option value="other">Other</option>
+                                  </select>
+                                </div>
+                              </label>
+                              <span class="cls_aramRegErrormsg" id="id_aramReg_argender"></span>
+                            </div>
+
+                            <div class="cls_aramRegWrap cls_aramRegWrapPhone">
+                              <label class="cls_aramRegLab">
+                                <strong>Mobile phone</strong>
+                              </label>
+                              <input type="number" pattern=".{10, 11}" placeholder="Mobile Phone" class="cls_aramRegPhone cls_aramRegInp" id="id_aramRegPhone" required maxlength=11>
+                              <span class="cls_aramRegErrormsg" id="id_aramReg_arphonenumber">
+                              </span>
+                            </div>
+
+                            <div class="cls_aramRegWrap cls_aramRegWrapAddrs">
+                              <label class="cls_aramRegLab">
+                                <strong>Address</strong>
+                              </label>
+                              <textarea class="cls_aramRegAddrs cls_aramRegInp" id="id_aramRegAddrs" cols="40" rows="5"></textarea>
+                              <span class="cls_aramRegErrormsg" id="id_aramReg_araddrs">
+                              </span>
+                            </div>
+
+                            <div class="cls_aramRegWrap cls_aramRegWrapPin">
+                              <label class="cls_aramRegLab">
+                                <strong>Pin</strong>
+                              </label>
+                              <input type="number" placeholder="Pin" class="cls_aramRegPin cls_aramRegInp" id="id_aramRegPin" required maxlength=6>
+                              <span class="cls_aramRegErrormsg" id="id_aramReg_arpin">
+                              </span>
+                            </div>
+
+                            <div class="cls_aramRegWrap cls_aramRegWrapCity">
+                              <label class="cls_aramRegLab">
+                                <strong>City</strong>
+                              </label>
+                              <input type="text" placeholder="City" class="cls_aramRegCity cls_aramRegInp" id="id_aramRegCity" required>
+                              <span class="cls_aramRegErrormsg" id="id_aramReg_arcity">
+                              </span>
+                            </div>
+
+                            <div class="cls_aramRegWrap cls_aramRegWrapState">
+                              <label class="cls_aramRegLab">
+                                <strong>State</strong>
+                              </label>
+                              <input type="text" placeholder="State" class="cls_aramRegState cls_aramRegInp" id="id_aramRegState" required>
+                              <span class="cls_aramRegErrormsg" id="id_aramReg_arstate">
+                              </span>
+                            </div>
+
+                            <div class="cls_aramRegWrap cls_aramRegWrapGender">
+                              <label class="cls_aramRegLab">
+                                <strong id="GenderLabel">Country</strong>
+                                <div class="cls_aramRegGenderSel">
+                                  <select id="id_aramRegCountry" class="cls_aramRegCountry cls_aramRegSel">
+                                    <option value="">Select</option>
+                                    <option value="india">India</option>
+                                  </select>
+                                </div>
+                              </label>
+                              <span class="cls_aramRegErrormsg" id="id_aramReg_argender"></span>
+                            </div>
+
+                            <div class="cls_aramRegWrap cls_aramRegWrapSubmit">
+                              <input id="id_aramRegSubmitButton" type="button" class="cls_aramRegSubmitButton" value="Submit" onclick="registration.validation();">
+                            </div>
+                          </form>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+        <div class='row'>
+            <div class='col-md-12'>
+                <% include footer.ejs %>
+            </div>
+        </div>
   </body>
 
   <script type="text/javascript" src="/javascripts/jquery.js"></script>

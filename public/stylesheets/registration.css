@@ -8,6 +8,11 @@
 	-moz-border-radius: 6px;
 	border-radius: 6px;
 }
+.cls_aramRegErrorEL{
+    color: #a94442;
+    background-color: #f2dede;
+}
+
 .cls_aramRegFormCnt strong {
 	margin: 0 0 .5em;
 	display: inline-block;

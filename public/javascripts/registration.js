@@ -34,7 +34,7 @@ new (function(registrationObj){
 		$('.cls_aramRegErrormsg').removeClass('cls_aramRegErrorEL').hide();
 	    if (!nameFilter.test(aramRegDetails.firstname)) 
 	    {
-	        $('#id_aramReg_arfirstname').addClass('cls_aramRegErrorEL').html('Error').show();
+	        $('#id_aramReg_arfirstname').addClass('cls_aramRegErrorEL').html('Invalid Frist Name').show();
 	    } 
 	    else 
 	    {
@@ -43,7 +43,7 @@ new (function(registrationObj){
 
 	    if (!nameFilter.test(aramRegDetails.lastname)) 
 	    {
-	        $('#id_aramReg_arlastname').addClass('cls_aramRegErrorEL').html('Error').show();
+	        $('#id_aramReg_arlastname').addClass('cls_aramRegErrorEL').html('Invalid Last Name').show();
 	    } 
 	    else 
 	    {
@@ -52,7 +52,7 @@ new (function(registrationObj){
 
 	    if (!mobileFilter.test(aramRegDetails.mobile)) 
 	    {
-	        $('#id_aramReg_arphonenumber').addClass('cls_aramRegErrorEL').html('Error').show();
+	        $('#id_aramReg_arphonenumber').addClass('cls_aramRegErrorEL').html('Invalid Mobile Number').show();
 	    } 
 	    else 
 	    {
@@ -61,7 +61,7 @@ new (function(registrationObj){
 
 	    if (!emailFilter.test(aramRegDetails.mailId)) 
 	    {
-	        $('#id_aramReg_armailid').addClass('cls_aramRegErrorEL').html('Error').show();
+	        $('#id_aramReg_armailid').addClass('cls_aramRegErrorEL').html('Please give valid email id').show();
 	    } 
 	    else 
 	    {
@@ -70,7 +70,7 @@ new (function(registrationObj){
 
 	    if (aramRegDetails.password.length < 8) 
 	    {
-	        $('#id_aramReg_arpasswd').addClass('cls_aramRegErrorEL').html('Error').show();
+	        $('#id_aramReg_arpasswd').addClass('cls_aramRegErrorEL').html('Password length should be minimum 8').show();
 	    } 
 	    else 
 	    {
@@ -79,16 +79,16 @@ new (function(registrationObj){
 
 	    if (aramRegDetails.password != aramRegDetails.repassword) 
 	    {
-	        $('#id_aramReg_arrepasswd').addClass('cls_aramRegErrorEL').html('Error').show();
+	        $('#id_aramReg_arrepasswd').addClass('cls_aramRegErrorEL').html('Passwords not matching').show();
 	    } 
 	    else 
 	    {
 			aramRegValidator.repassword = true;
 	    }
 
-	    if (!aramRegDetails.dob) 
+	    if (!aramRegDetails.dob)
 	    {
-	        $('#id_aramReg_ardate').addClass('cls_aramRegErrorEL').html('Error').show();
+	        $('#id_aramReg_ardate').addClass('cls_aramRegErrorEL').html('DOB is mandatory').show();
 	    } 
 	    else 
 	    {
