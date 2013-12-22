@@ -1,0 +1,19 @@
+Language : JavaScript
+Platform : Nodejs
+Framework: Expressjs
+Templating : EJS
+
+Installation:
+-------------
+1. Install Nodejs with NPM. Refer 'http://nodejs.org/'
+2. Checkout the code base.
+3. Navigate to project root folder and run 'npm install'. Which will fetch all the dependencies.
+4. Now run 'node app.js'. That's all you need to do. Your server is ready.
+
+Hit 'http://localhost:3000/', your app should be working fine.
+
+
+For Future:
+-----------
+Add this line to menu.ejs to enable FAQ page:-
+<li class="navigation faq"><a href="/faq">FAQ</a></li>
