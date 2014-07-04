@@ -78,5 +78,5 @@ app.post('/registration', user.registration);
 app.get('/registration', user.isAuthenticated, routes.registration);
 
 http.createServer(app).listen(app.get('port'), function(){
-  console.log('Express server listening on port ' + app.get('port'));
+  console.log('Express server listening in port ' + app.get('port'));
 });
